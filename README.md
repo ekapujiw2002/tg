@@ -8,6 +8,16 @@ Documentation for Telegram API is available here: http://core.telegram.org/api
 
 Documentation for MTproto protocol is available here: http://core.telegram.org/mtproto
 
+### Upgrading to version 1.0
+
+First of all, the binary is now in ./bin folder and is named telegram-cli. So be careful, not to use old binary.
+
+Second, config folder is now ${HOME}/.telegram-cli
+
+Third, database is not compatible with older versions, so you'll have to login again.
+
+Fourth, in peer_name '#' are substitued to '@'. (Not applied to appending of '#%d' in case of two peers having same name).
+
 ### Installation
 
 Clone GitHub Repository
@@ -24,13 +34,13 @@ or download and extract zip
 Install libs: readline or libedit, openssl and (if you want to use config) libconfig and liblua.
 If you do not want to use them pass options --disable-libconfig and --disable-liblua respectively.
 
-On ubuntu use: 
+On Ubuntu/Debian use: 
 
-     sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev
+     sudo apt-get install libreadline-dev libconfig-dev libssl-dev lua5.2 liblua5.2-dev libevent-dev
 
 On gentoo:
 
-     sudo emerge -av sys-libs/readline dev-libs/libconfig dev-libs/openssl dev-lang/lua
+     sudo emerge -av sys-libs/readline dev-libs/libconfig dev-libs/openssl dev-lang/lua dev-libs/libevent
 
 On Fedora:
 
@@ -80,11 +90,11 @@ If you manage to launch it on other UNIX, please let me know.
 
 ### Usage
 
-    ./telegram -k <public-server-key>
+    bin/telegram-cli -k <public-server-key>
     
-By default public key is stored in the same folder named tg-server.pub or in /etc/telegram/server.pub, if it's not, specify where to find it:
+By default public key is stored in the same folder named tg-server.pub or in /etc/telegram-cli/server.pub, if it's not, specify where to find it:
 
-    ./telegram -k tg-server.pub
+    bin/telegram-cli -k tg-server.pub
 
 Client support TAB completion and command history.
 
